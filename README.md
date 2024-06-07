@@ -1,33 +1,28 @@
-<p>
- Threads is the most popular social media platform on the internet and today we are gonna be build one thread clone with MERN and React Native. We will build this mobile app for both devices like Android and ios. And at the end, we will also build an apk of our app to share it with our friends. so they can install it on their phone and use it.
-</p>
-<a href="https://www.youtube.com/watch?v=k6Rqj5twoMo">Click here</a> <span>to watch Video with more detailed</span>
-<br />
-<br />
-<p>Don't forget to post your mobile app video and mention Becodemy on LinkedIn or Instagram.</p>
-<br />
+# Threads Clone - MERN and React Native
 
-Follow Becodemy on social media for all updates
-<br />
+Welcome to the Threads Clone project! This repository contains a complete guide to building a social media platform similar to Threads using the MERN stack and React Native. We will create a mobile app that works on both Android and iOS devices, and by the end of this project, you will be able to generate an APK of the app to share with your friends.
 
-Instagram: https://www.instagram.com/shahriar_sajeeb_/ 
-<br />
-Threads: https://www.threads.net/@shahriar_sajeeb_
-<br />
-Linkedin: https://www.linkedin.com/in/shahriar-sajeeb-76763222a/
-<br />
+## Overview
+Threads is one of the most popular social media platforms on the internet. This project will guide you through building a clone of Threads with a comprehensive tutorial. The tutorial includes:
 
-Important Links:
-<br />
-Mobile App Download Link: https://we.tl/t-nS0tfyx4mr (only for Android phones)
-<br />
-Starting Github Repo: https://github.com/shahriarsajeeb/Threads-starting-setup (Don't forget to give a star  ⭐)
-<br />
-Full source code: https://github.com/shahriarsajeeb/threads-clone (Don't forget to give a star  ⭐)
-<br />
-React Native setup: https://reactnative.dev/docs/environment-setup
-<br />
-Build APK with React Native: https://reactnative.dev/docs/signed-apk-android 
-<br />
+- Setting up the MERN stack (MongoDB, Express, React, Node.js).
+- Developing the mobile app using React Native.
+- Building and sharing the APK for Android devices.
 
-#mern_stack  #react_native #becodemy #typescript  #nodejs  #tailwindcss #typescript
+
+
+## Share Your Work
+Don't forget to post a video of your mobile app and mention Rahul Kumar on LinkedIn or Instagram.
+
+
+
+## Important Links
+- **React Native Setup**: [React Native Environment Setup](https://reactnative.dev/docs/environment-setup)
+- **Build APK with React Native**: [React Native APK Build Guide](https://reactnative.dev/docs/signed-apk-android)
+
+## Hashtags
+#mern_stack #react_native #becodemy #typescript #nodejs #tailwindcss #typescript
+
+---
+
+Thank you for checking out this project! If you have any questions or need further assistance, feel free to reach out to me on social media. Happy coding!
