@@ -1,15 +1,14 @@
-// app.tsx
 import * as React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
+import {NavigationContainer} from '@react-navigation/native';
 import Main from './Navigations/Main';
 import Auth from './Navigations/Auth';
-import Store, { AppDispatch, RootState } from './redux/Store';
-import { Provider, useDispatch, useSelector } from 'react-redux';
-import { loadUser } from './redux/actions/userAction';
+import Store from './redux/Store';
+import {Provider, useDispatch, useSelector} from 'react-redux';
+import {getAllUsers, loadUser} from './redux/actions/userAction';
 import Loader from './src/common/Loader';
-import { LogBox } from 'react-native';
-import { StatusBar } from 'native-base';
-
+import {LogBox} from 'react-native';
+import {StatusBar} from 'native-base';
+import { getAllPosts } from './redux/actions/postAction';
 LogBox.ignoreAllLogs();
 
 function App() {
@@ -21,27 +20,37 @@ function App() {
 }
 
 const AppStack = () => {
-  const { isAuthenticated, loading } = useSelector((state: RootState) => state.user); // Use RootState type
-  const dispatch: AppDispatch = useDispatch(); // Initialize dispatch with AppDispatch type
+  const {isAuthenticated, loading} = useSelector((state: any) => state.user);
+  // const dispatch = useDispatch();
 
   React.useEffect(() => {
-    dispatch(loadUser());
-  }, [dispatch]);
+    Store.dispatch(loadUser());
+  }, []);
 
   return (
     <>
-      <StatusBar
-        animated={true}
-        backgroundColor={'#fff'}
-        barStyle={'dark-content'}
-        showHideTransition={'fade'}
-      />
+      <>
+        <StatusBar
+          animated={true}
+          backgroundColor={'#fff'}
+          barStyle={'dark-content'}
+          showHideTransition={'fade'}
+        />
+      </>
       {loading ? (
         <Loader />
       ) : (
-        <NavigationContainer>
-          {isAuthenticated ? <Main /> : <Auth />}
-        </NavigationContainer>
+        <>
+          {isAuthenticated ? (
+            <NavigationContainer>
+              <Main />
+            </NavigationContainer>
+          ) : (
+            <NavigationContainer>
+              <Auth />
+            </NavigationContainer>
+          )}
+        </>
       )}
     </>
   );
