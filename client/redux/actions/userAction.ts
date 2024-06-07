@@ -50,75 +50,75 @@ export const loginUser = createAsyncThunk(
   }
 );
 
-// // log out user
-// export const logoutUser = createAsyncThunk(
-//   'user/logout',
-//   async (_, { rejectWithValue }) => {
-//     try {
-//       await AsyncStorage.setItem('token', '');
-//       return {};
-//     } catch (error) {
-//       return rejectWithValue(error);
-//     }
-//   }
-// );
+//log out user
+export const logoutUser = createAsyncThunk(
+  'user/logout',
+  async (_, { rejectWithValue }) => {
+    try {
+      await AsyncStorage.setItem('token', '');
+      return {};
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);
 
-// // get all users
-// export const getAllUsers = createAsyncThunk(
-//   'user/getAll',
-//   async (_, { rejectWithValue }) => {
-//     try {
-//       const token = await AsyncStorage.getItem('token');
-//       const { data } = await axios.get(`${URI}/users`, { headers: { Authorization: `Bearer ${token}` } });
-//       return data.users;
-//     } catch (error: any) {
-//       return rejectWithValue(error.response.data.message);
-//     }
-//   }
-// );
+// get all users
+export const getAllUsers = createAsyncThunk(
+  'user/getAll',
+  async (_, { rejectWithValue }) => {
+    try {
+      const token = await AsyncStorage.getItem('token');
+      const { data } = await axios.get(`${URI}/users`, { headers: { Authorization: `Bearer ${token}` } });
+      return data.users;
+    } catch (error: any) {
+      return rejectWithValue(error.response.data.message);
+    }
+  }
+);
 
-// // follow user
-// export const followUserAction = createAsyncThunk(
-//   'user/follow',
-//   async ({ userId, followUserId, users }: { userId: string, followUserId: string, users: any }, { rejectWithValue }) => {
-//     try {
-//       const token = await AsyncStorage.getItem('token');
-//       const updatedUsers = users.map((userObj: any) =>
-//         userObj._id === followUserId
-//           ? {
-//               ...userObj,
-//               followers: [...userObj.followers, { userId }],
-//             }
-//           : userObj,
-//       );
-//       await axios.put(`${URI}/add-user`, { followUserId }, { headers: { Authorization: `Bearer ${token}` } });
-//       return updatedUsers;
-//     } catch (error) {
-//       console.log('Error following user:', error);
-//       return rejectWithValue(error);
-//     }
-//   }
-// );
+// follow user
+export const followUserAction = createAsyncThunk(
+  'user/follow',
+  async ({ userId, followUserId, users }: { userId: string, followUserId: string, users: any }, { rejectWithValue }) => {
+    try {
+      const token = await AsyncStorage.getItem('token');
+      const updatedUsers = users.map((userObj: any) =>
+        userObj._id === followUserId
+          ? {
+              ...userObj,
+              followers: [...userObj.followers, { userId }],
+            }
+          : userObj,
+      );
+      await axios.put(`${URI}/add-user`, { followUserId }, { headers: { Authorization: `Bearer ${token}` } });
+      return updatedUsers;
+    } catch (error) {
+      console.log('Error following user:', error);
+      return rejectWithValue(error);
+    }
+  }
+);
 
-// // unfollow user
-// export const unfollowUserAction = createAsyncThunk(
-//   'user/unfollow',
-//   async ({ userId, followUserId, users }: { userId: string, followUserId: string, users: any }, { rejectWithValue }) => {
-//     try {
-//       const token = await AsyncStorage.getItem('token');
-//       const updatedUsers = users.map((userObj: any) =>
-//         userObj._id === followUserId
-//           ? {
-//               ...userObj,
-//               followers: userObj.followers.filter((follower: any) => follower.userId !== userId),
-//             }
-//           : userObj,
-//       );
-//       await axios.put(`${URI}/remove-user`, { followUserId }, { headers: { Authorization: `Bearer ${token}` } });
-//       return updatedUsers;
-//     } catch (error) {
-//       console.log('Error unfollowing user:', error);
-//       return rejectWithValue(error);
-//     }
-//   }
-// );
+// unfollow user
+export const unfollowUserAction = createAsyncThunk(
+  'user/unfollow',
+  async ({ userId, followUserId, users }: { userId: string, followUserId: string, users: any }, { rejectWithValue }) => {
+    try {
+      const token = await AsyncStorage.getItem('token');
+      const updatedUsers = users.map((userObj: any) =>
+        userObj._id === followUserId
+          ? {
+              ...userObj,
+              followers: userObj.followers.filter((follower: any) => follower.userId !== userId),
+            }
+          : userObj,
+      );
+      await axios.put(`${URI}/remove-user`, { followUserId }, { headers: { Authorization: `Bearer ${token}` } });
+      return updatedUsers;
+    } catch (error) {
+      console.log('Error unfollowing user:', error);
+      return rejectWithValue(error);
+    }
+  }
+);

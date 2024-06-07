@@ -1,6 +1,6 @@
 // userSlice.ts
 import { createSlice } from '@reduxjs/toolkit';
-import { registerUser, loadUser, loginUser } from '../actions/userAction';
+import { registerUser, loadUser, loginUser, logoutUser, getAllUsers, followUserAction, unfollowUserAction } from '../actions/userAction';
 
 const initialState = {
   isAuthenticated: false,
@@ -64,50 +64,50 @@ const userSlice = createSlice({
         state.error = action.payload as string;
         state.user = {};
       })
-    //   .addCase(logoutUser.pending, (state) => {
-    //     state.loading = true;
-    //   })
-    //   .addCase(logoutUser.fulfilled, (state) => {
-    //     state.loading = false;
-    //     state.isAuthenticated = false;
-    //     state.user = {};
-    //   })
-    //   .addCase(logoutUser.rejected, (state) => {
-    //     state.loading = false;
-    //   })
-    //   .addCase(getAllUsers.pending, (state) => {
-    //     state.isLoading = true;
-    //   })
-    //   .addCase(getAllUsers.fulfilled, (state, action) => {
-    //     state.isLoading = false;
-    //     state.users = action.payload;
-    //   })
-    //   .addCase(getAllUsers.rejected, (state, action) => {
-    //     state.isLoading = false;
-    //     state.error = action.payload as string;
-    //   })
-    //   .addCase(followUserAction.pending, (state) => {
-    //     state.isLoading = true;
-    //   })
-    //   .addCase(followUserAction.fulfilled, (state, action) => {
-    //     state.isLoading = false;
-    //     state.users = action.payload;
-    //   })
-    //   .addCase(followUserAction.rejected, (state, action) => {
-    //     state.isLoading = false;
-    //     state.error = action.payload as string;
-    //   })
-    //   .addCase(unfollowUserAction.pending, (state) => {
-    //     state.isLoading = true;
-    //   })
-    //   .addCase(unfollowUserAction.fulfilled, (state, action) => {
-    //     state.isLoading = false;
-    //     state.users = action.payload;
-    //   })
-    //   .addCase(unfollowUserAction.rejected, (state, action) => {
-    //     state.isLoading = false;
-    //     state.error = action.payload as string;
-    //   });
+      .addCase(logoutUser.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(logoutUser.fulfilled, (state) => {
+        state.loading = false;
+        state.isAuthenticated = false;
+        state.user = {};
+      })
+      .addCase(logoutUser.rejected, (state) => {
+        state.loading = false;
+      })
+      .addCase(getAllUsers.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getAllUsers.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.users = action.payload;
+      })
+      .addCase(getAllUsers.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload as string;
+      })
+      .addCase(followUserAction.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(followUserAction.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.users = action.payload;
+      })
+      .addCase(followUserAction.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload as string;
+      })
+      .addCase(unfollowUserAction.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(unfollowUserAction.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.users = action.payload;
+      })
+      .addCase(unfollowUserAction.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload as string;
+      });
   }
 });
 
