@@ -1,20 +1,15 @@
-import { configureStore } from "@reduxjs/toolkit";
-import { userReducer } from "./reducers/userReducer";
-import { postReducer } from "./reducers/postReducer";
-import { notificationReducer } from "./reducers/notificationReducer";
+// store.ts
+import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
+import userReducer from './reducers/userReducer'; // Adjust the path as necessary
 
-
-const Store = configureStore({
-    reducer:{
-       user: userReducer,
-       post: postReducer,
-       notification: notificationReducer,
-    },
-    middleware: getDefaultMiddleware => 
-    getDefaultMiddleware({
-        immutableCheck: false,
-        serializableCheck: false,
-    }),
+const store = configureStore({
+  reducer: {
+    user: userReducer,
+    // Add other reducers here if you have them
+  },
 });
 
-export default Store;
+export default store;
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
+export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, RootState, unknown, Action<string>>;
