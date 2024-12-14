@@ -8,7 +8,7 @@ const Notification = require("../models/NotificationModel");
 // Register user
 exports.createUser = catchAsyncErrors(async (req, res, next) => {
   try {
-    const { name, email, password, avatar } = req.body;
+    const { name, email, password,userName,avatar} = req.body;
 
     let user = await User.findOne({ email });
     if (user) {
@@ -25,14 +25,12 @@ exports.createUser = catchAsyncErrors(async (req, res, next) => {
       });
     }
     
-    const userNameWithoutSpace = name.replace(/\s/g, "");
-
     const uniqueNumber = Math.floor(Math.random() * 1000);
     user = await User.create({
       name,
       email,
       password,
-      userName:name+uniqueNumber,
+      userName,
       avatar: avatar
         ? { public_id: myCloud.public_id, url: myCloud.secure_url }
         : null,
