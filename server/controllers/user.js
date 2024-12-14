@@ -24,12 +24,15 @@ exports.createUser = catchAsyncErrors(async (req, res, next) => {
         folder: "avatars",
       });
     }
+    
+    const userNameWithoutSpace = name.replace(/\s/g, "");
 
+    const uniqueNumber = Math.floor(Math.random() * 1000);
     user = await User.create({
       name,
       email,
       password,
-      userName:name+123,
+      userName:name+uniqueNumber,
       avatar: avatar
         ? { public_id: myCloud.public_id, url: myCloud.secure_url }
         : null,
