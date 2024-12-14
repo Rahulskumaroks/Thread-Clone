@@ -29,7 +29,7 @@ exports.createUser = catchAsyncErrors(async (req, res, next) => {
       name,
       email,
       password,
-      userName,
+      userName:name,
       avatar: avatar
         ? { public_id: myCloud.public_id, url: myCloud.secure_url }
         : null,
