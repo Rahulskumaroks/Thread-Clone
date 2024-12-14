@@ -2,7 +2,6 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
-
 const userSchema = new mongoose.Schema(
   {
     name: {
@@ -11,6 +10,9 @@ const userSchema = new mongoose.Schema(
     },
     userName: {
       type: String,
+      unique: true,
+      sparse: true,
+      trim: true,
     },
     bio: {
       type: String,
@@ -18,6 +20,8 @@ const userSchema = new mongoose.Schema(
     email: {
       type: String,
       required: [true, "Please enter your email"],
+      unique: true,
+      trim: true,
     },
     password: {
       type: String,
@@ -26,11 +30,9 @@ const userSchema = new mongoose.Schema(
     avatar: {
       public_id: {
         type: String,
-        required: [true, "Please upload one profile picture"],
       },
       url: {
         type: String,
-        required: [true, "Please upload one profile picture"],
       },
     },
     followers: [
