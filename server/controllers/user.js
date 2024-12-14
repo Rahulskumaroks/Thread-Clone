@@ -8,7 +8,20 @@ const Notification = require("../models/NotificationModel");
 // Register user
 exports.createUser = catchAsyncErrors(async (req, res, next) => {
   try {
-    const { name, email, password,userName,avatar} = req.body;
+    const { name, email, password, userName, avatar } = req.body;
+
+    if (!userName) {
+      return res
+        .status(400)
+        .json({ success: false, message: "Username is required" });
+    }
+
+    let existingUser = await User.findOne({ userName });
+    if (existingUser) {
+      return res
+        .status(400)
+        .json({ success: false, message: "Username already exists" });
+    }
 
     let user = await User.findOne({ email });
     if (user) {
@@ -24,8 +37,7 @@ exports.createUser = catchAsyncErrors(async (req, res, next) => {
         folder: "avatars",
       });
     }
-    
-    const uniqueNumber = Math.floor(Math.random() * 1000);
+
     user = await User.create({
       name,
       email,
@@ -40,10 +52,12 @@ exports.createUser = catchAsyncErrors(async (req, res, next) => {
   } catch (error) {
     res.status(500).json({
       success: false,
-      message: error.message,
+      message:
+        error.code === 11000 ? "Duplicate key detected" : error.message,
     });
   }
 });
+
 
 // Login User
 exports.loginUser = catchAsyncErrors(async (req, res, next) => {
