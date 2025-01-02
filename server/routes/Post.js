@@ -15,7 +15,7 @@ const router = express.Router();
 
 router.route("/create-post").post(isAuthenticatedUser, createPost);
 
-router.route("/get-all-posts").get(isAuthenticatedUser, getAllPosts);
+router.route("/get-all-posts").get(getAllPosts);
 
 router.route("/update-likes").put(isAuthenticatedUser, updateLikes);
 
