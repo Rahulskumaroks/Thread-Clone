@@ -54,7 +54,7 @@ exports.createPost = catchAsyncErrors(async (req, res, next) => {
 });
 
 // get all posts
-exports.getAllPosts = catchAsyncErrors(async (req, res) => {
+exports.getAllPosts = catchAsyncErrors(async (req, res,next) => {
   try {
     const posts = await Post.find().sort({
       createdAt: -1,
